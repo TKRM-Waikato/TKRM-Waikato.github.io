@@ -1,0 +1,11 @@
+.about_summary {
+  max-width: 800px;
+  margin: auto;
+  background-color: #f3f3f3;
+  border-radius: 0.5em;
+  color: black;
+  margin: 20px;
+  padding: 20px;
+  padding-top: 10px;
+  margin-bottom: 35px;
+}

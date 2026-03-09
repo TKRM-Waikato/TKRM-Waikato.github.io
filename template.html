@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }}</title>
+  <script defer src="/assets/js/components.js"></script>
+</head>
+<body>
+  <site-header></site-header>
+
+
+
+  <a href="javascript:history.back()" class="back-button">← Back</a>
+  <main class="post-main">
+    <article class="post-article markdown-body">
+      <header class="post-header">
+        <h1 class="post-title">{{ title }}</h1>
+        <p class="post-meta">
+          <span class="template_date">{{ date }}</span>
+          <span class="template_authors">by {{ authors }}</span>
+        </p>
+        <p class="post-description">{{ description }}</p>
+      </header>
+      <section class="post-content">
+        {{ content }}
+      </section>
+    </article>
+  </main>
+
+
+  
+  <site-footer></site-footer>
+</body>
+</html>
