@@ -5,11 +5,13 @@
   border-top: 1px solid var(--border-color);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
+  grid-template-areas: "content partners links";
   align-items: center;
   gap: 1.5rem;
 }
 
 .footer_content {
+  grid-area: content;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -26,6 +28,7 @@
   margin: 0.2rem 0;
 }
 .footer_links {
+  grid-area: links;
   text-align: right;
   font-size: 0.9rem;
   display: flex;
@@ -58,42 +61,136 @@
   margin: 0.2rem 0;
 }
 
+.footer_partners {
+  grid-area: partners;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  justify-self: center;
+}
+
 .footer_sponsors {
   display: flex;
   align-items: center;
   gap: 0.9rem;
-  justify-self: center;
 }
 
 .footer_sponsors_label {
   font-size: 0.85rem;
   opacity: 0.75;
+  white-space: nowrap;
+}
+
+.footer_sponsors_logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.footer_sponsors_logos a {
+  display: inline-flex;
+  max-width: 100%;
 }
 
 .footer_sponsor_logo {
   height: 56px;
   width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
-/* Footer layout: stack on mobile so the three sections stay readable */
-@media (max-width: 768px) {
-  .footer_root {
-    grid-template-columns: 1fr;
-    justify-items: start;
-    text-align: left;
-  }
+/* Partner logos are wide wordmarks, so keep them shorter than the sponsor logo */
+.footer_partner_logo {
+  height: 36px;
+}
 
-  .footer_content {
-    justify-self: start;
+/* Dark logo that would disappear on the black footer */
+.footer_logo_light_bg {
+  background-color: #ffffff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* Not enough room for labels beside the logos: put each label above its logos */
+@media (max-width: 1200px) {
+  .footer_partners {
+    align-items: flex-start;
   }
 
   .footer_sponsors {
-    justify-self: start;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
+  /* Same row height for both groups so the labels line up */
+  .footer_sponsors_logos {
+    min-height: 56px;
+  }
+}
+
+/* Tablet: partners get their own full-width row, copyright and links share the row below */
+@media (max-width: 900px) {
+  .footer_root {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "partners partners"
+      "content links";
+    row-gap: 2rem;
+  }
+
+  .footer_partners {
+    width: 100%;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+/* Mobile: single centred column */
+@media (max-width: 560px) {
+  .footer_root {
+    padding: 1.5rem 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "partners"
+      "content"
+      "links";
+    justify-items: center;
+    text-align: center;
+    row-gap: 1.25rem;
+  }
+
+  .footer_partners {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .footer_partners {
+    align-items: center;
+  }
+
+  .footer_sponsors {
+    max-width: 100%;
+  }
+
+  .footer_partner_logo {
+    height: 30px;
+  }
+
+  .footer_content,
   .footer_links {
-    justify-self: start;
-    text-align: left;
-    margin-top: 0;
+    justify-self: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer_links nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 1.5rem;
   }
 }
